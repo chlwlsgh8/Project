@@ -1,4 +1,0 @@
-Tripster version
-
-Tripster ver1.0 : 개발환경 구축 (개발환경.html)
-
