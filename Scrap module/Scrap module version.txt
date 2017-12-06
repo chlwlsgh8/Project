@@ -1,3 +1,5 @@
 ScrapModule version
 
 ScrapModule ver 0 : 초기 개발환경
+
+ScrapModule ver 1.0 : 상세페이지에서 스크랩 구현 ( scrap db에 값 넣기 )
