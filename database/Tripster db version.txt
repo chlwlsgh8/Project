@@ -1,0 +1,23 @@
+Tripster_exerd version 
+
+Tripster db v1.0 
+  - db 초기 설계도
+
+Tripster db v1.01(17.12.04 )
+  - Scrap 테이블 내 컬럼 추가
+
+Tripster db v1.02 (17.12.04)
+  - Restaurant 테이블 내 컬럼 추가
+  - 테이블명 -> tbl_테이블명으로 변경
+
+Tripster db v1.03 (17.12.05)
+  - Auto Increase 속성 추가
+
+Tripster db v1.04 (17.12.07)
+  - tbl_Restaurant_Review 테이블 추가
+
+Tripster db v1.05 (17.12.07)
+  - tbl_Plan_Detail 내 컬럼명 변경
+    (Content_Title --> Title)
+  - tbl_Plan_Detail 내 컬럼 데이터타입 변경
+    (_StartTime, _Date, Date --> Varchar) 
