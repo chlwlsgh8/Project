@@ -26,4 +26,8 @@ ScrapModule v 1.2 : 스크랩 삭제 구현
 
 ScrapModule v 1.3 : restcontroller,ajax 공부,restaurant contents 코드 추가,ajax로 스크랩 구현
 	남은 작업 : controller 마무리 작업
-			  
+
+ScrapModuel v 1.4 : 주석 추가, ajax로 스크랩 추가&삭제
+	남은 작업 : 처음 페이지 들어왔을때 controller에서 회원이 스크랩 했는지 확인
+
+ScrapModuel v 1.5 : 스크랩 리스트 ajax로 구현
