@@ -31,3 +31,6 @@ ScrapModuel v 1.4 : 주석 추가, ajax로 스크랩 추가&삭제
 	남은 작업 : 처음 페이지 들어왔을때 controller에서 회원이 스크랩 했는지 확인
 
 ScrapModuel v 1.5 : 스크랩 리스트 ajax로 구현
+
+ScrapModuel v 1.6 : 스크랩 리스트에서 스크랩 삭제 ajax로 구현
+	남은 작업 : handlevars 사용?( 데이터 부분과 html 부분 분리 )
