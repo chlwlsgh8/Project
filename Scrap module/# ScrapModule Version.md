@@ -36,3 +36,5 @@ ScrapModuel v 1.6 : 스크랩 리스트에서 스크랩 삭제 ajax로 구현
 	남은 작업 : handlevars 사용?( 데이터 부분과 html 부분 분리 )
 
 ScrapModuel v 1.7 : 깃에서 다른 모듈과 합침, 스크랩 여부 확인
+
+ScrapModule v1.8 : 스크랩 좋아요 구현
