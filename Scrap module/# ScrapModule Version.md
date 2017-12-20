@@ -37,4 +37,7 @@ ScrapModuel v 1.6 : 스크랩 리스트에서 스크랩 삭제 ajax로 구현
 
 ScrapModuel v 1.7 : 깃에서 다른 모듈과 합침, 스크랩 여부 확인
 
-ScrapModule v1.8 : 스크랩 좋아요 구현
+ScrapModule v1.8 : 일정 좋아요 구현
+
+ScrapModule v1.9 : 유저 팔로우 구현, 스크랩한 컨텐츠 조회,유저의 좋아요 리스트 구현,유저의 팔로우 리스트 구현,팔로잉 리스트 구현
+
