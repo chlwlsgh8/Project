@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="scrapMapper">
+
+<!-- db에 스크랩 추가 -->
+<insert id="scrap">
+	insert into tbl_Scrap (
+							Scrap_ID
+						   ,Member_ID
+						   ,Category_ID
+						   ,Contents_ID
+						   ,Contents_Title
+						   ,Contents_Thumbnail
+						   ,Created
+						   ,Updated
+						   )
+					values(
+							#{scrapID}
+							,#{memberID} 
+							,#{categoryID}
+							,#{contentsID}
+							,#{contentsTitle}
+							,#{contentsPhoto}
+							,now()
+							,now()
+							)
+</insert>
+
+  <!-- 스크랩 삭제 -->
+ <delete id="scrapDelete">
+ 
+ 	delete from tbl_Scrap
+	where Contents_ID = #{contentsID}
+ 
+ </delete>
+
+<!-- 스크랩 리스트 조회 -->
+<select id="listAll" resultType="com.tripster.domain.ScrapVO">
+	select
+			 Scrap_ID scrapID
+			,Member_ID memberID
+			,Category_ID categoryID
+			,Contents_ID contentsID
+			,Contents_Title contentsTitle
+			,Contents_Thumbnail contentsPhoto
+			,Created created
+			
+	from tbl_Scrap
+	
+	where Member_ID = #{memberID}
+
+</select>
+
+<!-- scrapID 삭제 -->
+<delete id="scrapIDRemove" >
+	
+	delete from tbl_Scrap
+	where scrap_ID = #{scrapID}
+	
+</delete>
+  
+</mapper>
+  

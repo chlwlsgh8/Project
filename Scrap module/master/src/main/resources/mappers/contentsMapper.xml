@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.tripster.mapper.contentsMapper">
+  
+  <select id="getRestaurantDetail" resultType="ContentsVO">
+  select 
+  	 tbl_Contents.Category_ID categoryID
+  	,tbl_Contents.Contents_ID contentsID
+  	,tbl_Contents.Contents_Title title
+  	,tbl_Contents.Contents_Location location 
+  	,tbl_Contents.Contents_Rating rating
+  	,tbl_Contents.Contents_View_Cnt contentsViewCnt
+  	,tbl_Contents.Contents_Review_Cnt contentsReviewCnt
+  	,tbl_Contents.Contents_Scrap_Cnt contentsScrapCnt
+  	,tbl_Contents_Detail.Contents_Contents contents
+  	,tbl_Contents_Detail.Contents_Time time
+  	,tbl_Contents_Detail.Contents_Tel tel
+  from
+  	tbl_Contents NATURAL JOIN tbl_Contents_Detail
+  where
+  	tbl_Contents.Contents_ID = #{contentsID}
+  </select>
+  
+  <select id="getPlaceDetail" resultType="ContentsVO">
+  select 
+  	tbl_Contents.Category_ID categoryID,tbl_Contents.Contents_ID contentsID,tbl_Contents.Contents_Title title,
+  	tbl_Contents.Contents_Location location, tbl_Contents.Contents_Rating rating,
+  	tbl_Contents.Contents_View_Cnt contentsViewCnt, tbl_Contents.Contents_Review_Cnt contentsReviewCnt,
+  	tbl_Contents.Contents_Scrap_Cnt contentsScrapCnt, tbl_Contents_detail.Contents_Contents contents,
+  	tbl_Contents_detail.Contents_Time time, tbl_Contents_detail.Contents_Tel tel
+  from
+  	tbl_Contents NATURAL JOIN tbl_Contents_Detail
+  where
+  	tbl_Contents.Contents_ID = #{contentsID}
+  </select>
+  
+  <select id="getRestaurantList" resultType="ContentsVO">
+ <![CDATA[
+  select 
+  	Category_ID categoryID, Contents_ID contentsID, Contents_Title title, Contents_Location location,
+  	Contents_Rating rating, Contents_View_Cnt contentsViewCnt, Contents_Review_Cnt contentsReviewCnt,
+  	Contents_Scrap_Cnt contentsScrapCnt
+  from
+  	tbl_Contents
+  where
+  	Category_ID = 1
+  order by Contents_ID desc
+  limit #{startNum}, #{contentsPerPage}
+   ]]>
+  </select>
+  
+  <select id="getPlaceList" resultType="ContentsVO">
+  <![CDATA[
+  select 
+  	Category_ID categoryID, Contents_ID contentsID, Contents_Title title, Contents_Location location,
+  	Contents_Rating rating, Contents_View_Cnt contentsViewCnt, Contents_Review_Cnt contentsReviewCnt,
+  	Contents_Scrap_Cnt contentsScrapCnt
+  from
+  	tbl_Contents
+  where
+  	Category_ID = 2
+  order by Contents_ID desc
+  limit #{startNum}, #{contentsPerPage}
+  ]]>
+  </select>
+ 
+  <select id="getTotalRestaurantNum" resultType="int">
+  <![CDATA[
+  select 
+  	count(Contents_ID)
+  from
+  	tbl_Contents
+  where
+    Category_ID = 1
+  ]]>
+  </select>
+  
+  <select id="getTotalPlaceNum" resultType="int">
+  <![CDATA[
+  select 
+  	count(Contents_ID)
+  from
+  	tbl_Contents
+  where
+    Category_ID = 2
+  ]]>
+  </select>
+  
+  <update id="updateViewCnt">
+  update
+  	tbl_Contents
+  set
+  	Contents_View_Cnt = Contents_View_Cnt + 1
+  where
+  	Contents_ID = #{contentsID}
+  </update>
+  
+  <update id="updateReviewCnt">
+  update
+  	tbl_Contents
+  set
+  	Contents_Review_Cnt = Contents_Review_Cnt + #{amount}
+  where
+  	Contents_ID = #{contentsID}
+  </update>
+  
+  <update id="updateScrapCnt">
+  update
+  	tbl_Contents
+  set
+  	Contents_Scrap_Cnt = Contents_Scrap_Cnt + #{amount}
+  where
+  	Contents_ID = #{contentsID}
+  </update>
+  
+  <!-- 컨텐츠 평점 -->
+  <update id="updateContentsRating">
+  update
+  	tbl_Contents
+  set
+  	Contents_Rating = #{contentsRating}
+  where
+  	Contents_ID = #{contentsID}
+  </update>
+  
+</mapper>
