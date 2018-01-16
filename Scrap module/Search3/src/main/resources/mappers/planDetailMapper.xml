@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tripster.mapper.planDetailMapper">
+
+	<!-- 등록 -->
+	<insert id="insert">
+		insert into tbl_Plan_Detail (plan_detail_id, plan_id, category_id, contents_id, title, plan_Detail_startTime, plan_detail_endTime, plan_detail_date)
+		values(#{planDetailID},#{planID},#{categoryID}, #{contentsID}, #{title},#{planDetailStartTime}, #{planDetailEndTime}, #{planDetailDate})
+	</insert>
+
+	<!-- 수정. -->
+	<update id="update">
+		update tbl_Plan_Detail set plan_Detail_StartTime
+		=#{planDetailStartTime}, plan_Detail_EndTime =#{planDetailEndTime}
+		where plan_Detail_ID = #{planDetailID}
+	</update>
+
+	<!-- 삭제. -->
+	<delete id="delete">
+		delete from tbl_Plan_Detail where plan_Detail_ID =
+		#{planDetailID}
+	</delete>
+
+	<!-- 일정 삭제 시, 해당 상세 일정 모두 삭제. -->
+	<delete id="deleteAll">
+		delete from tbl_Plan_Detail where plan_ID = #{planID}
+	</delete>
+
+
+<resultMap type="PlanDetailVO" id="PlanDetailVO">
+	<result column="plan_detail_id" property="planDetailID"/>
+	<result column="plan_id" property="planID"/>
+	<result column="contents_id" property="contentsID"/>
+	<result column="title" property="title"/>
+	<result column="plan_detail_startTime" property="planDetailStartTime"/>
+	<result column="plan_detail_EndTime" property="planDetailEndTime"/>
+	<result column="plan_detail_date" property="planDetailDate"/>
+	<result column="category_id" property="categoryID"/>
+	<result column="plan_detail_date" property="planDetailDate"/>
+	<collection property="memoVO" resultMap="MemoVO"/>
+</resultMap>
+
+<resultMap type="MemoVO" id="MemoVO">
+	<result column="plan_detail_id" property="planDetailID"/>
+	<result column="memo_Contents" property="memoContents"/>
+	<collection property="memoPictureVO" resultMap="MemoPictureVO"/>
+</resultMap>
+
+<resultMap type="MemoPictureVO" id="MemoPictureVO">
+	<result column="memo_picture_id" property="memoPictureID"/>
+	<result column="plan_detail_id" property="planDetailID"/>
+	<result column="memo_picture_name" property="memoPictureName"/>
+</resultMap>
+
+	<!-- 한 일정에 해당하는 세부일정 모두 조회. -->
+	<select id="selectAll" resultMap="PlanDetailVO">
+		select detail.plan_Detail_ID, detail.plan_ID, detail.contents_ID,
+		detail.title, detail.plan_Detail_StartTime,detail.plan_Detail_EndTime, detail.plan_Detail_Date,
+		detail.category_ID,
+		memo.memo_contents, picture.memo_Picture_Name
+		from tbl_Plan_Detail detail left join tbl_Memo memo on
+		detail.plan_Detail_ID = memo.plan_Detail_ID left join tbl_Memo_Picture
+		picture
+		on memo.plan_Detail_ID = picture.plan_Detail_ID
+		where detail.plan_ID = #{planID}
+		order by plan_Detail_Date asc , plan_Detail_StartTime asc
+	</select>
+	
+	<!-- planDetailID값 조회. -->
+	<select id="selectPlanDetailID" resultType="_int">
+		select
+		max(plan_Detail_ID) from tbl_Plan_Detail
+	</select>
+</mapper>
